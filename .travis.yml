@@ -7,12 +7,16 @@ script:
 - tox -e py27
 - make sdist bdist
 deploy:
-  provider: releases
-  api_key:
-    secure: ihwJNhuT7lFmyHRq8OYPpIAeWyx00dBdPMCLHgIZY0clFK1AwwNPU7Ovmk9x0nPswPNleSvp+spkVgNEeOZ8l6k6OZDBIORNgIYuLJvjVZ1jRqQigKsrlG2J0HzCoW9nfD/tOrH9vzAGDUYBwZza2JQtpDaly7WZ/Ck4DH6mBTDZSLm1GlCNmy/6L82kl2C1jGxVrpEMa3A6Qg8q8ZnMwnKOZmK99vplyFDsfDbRfNaOpXeImlJiZdA6YNwjnDUscdtYI07P8T80nmAGg2p4t7zRNCPNPnYUMBYFksNPpe0UJSpfkZ4QzyrtWxi+bsGDlmxvn/pByiq5xIH9B93Y7ggiY6aGlnnanJvH2Pb2UU3VzpevHWA4c7mTKD8XglXRb7iWqjKgBGtwFJM/TTu2BU0yArLIKk9Id2+rlN+hml9t6ZvGz9WXHOdbwJzngvNOYuCoOXu4tcl2uF8iDtruVW8UJ1YVcPp46SofjZZqt4UZSSdWvyR4S+2voLY+eFGoJU7Wzfz5+iGRvA4dSmf8wdQpRB9TY732PX3Qb3kKbkvkR6KaDTyrI8ibycyFJ1tIQ7Vte3upwlZKHNu1K6cAVCGIvEfbnPNn2/9UraaTdkS+dzJVdFLzhw0JnPeF1a/vlXvswNHond498L5PUIo9VFypVaI+KSlHaJL27mjkL5c=
-  file: dist/*
-  file_glob: true
-  skip_cleanup: true
-  on:
-    tags: true
-    repo: 3stack-software/rfc6266
+  - provider: releases
+    api_key:
+      secure: ihwJNhuT7lFmyHRq8OYPpIAeWyx00dBdPMCLHgIZY0clFK1AwwNPU7Ovmk9x0nPswPNleSvp+spkVgNEeOZ8l6k6OZDBIORNgIYuLJvjVZ1jRqQigKsrlG2J0HzCoW9nfD/tOrH9vzAGDUYBwZza2JQtpDaly7WZ/Ck4DH6mBTDZSLm1GlCNmy/6L82kl2C1jGxVrpEMa3A6Qg8q8ZnMwnKOZmK99vplyFDsfDbRfNaOpXeImlJiZdA6YNwjnDUscdtYI07P8T80nmAGg2p4t7zRNCPNPnYUMBYFksNPpe0UJSpfkZ4QzyrtWxi+bsGDlmxvn/pByiq5xIH9B93Y7ggiY6aGlnnanJvH2Pb2UU3VzpevHWA4c7mTKD8XglXRb7iWqjKgBGtwFJM/TTu2BU0yArLIKk9Id2+rlN+hml9t6ZvGz9WXHOdbwJzngvNOYuCoOXu4tcl2uF8iDtruVW8UJ1YVcPp46SofjZZqt4UZSSdWvyR4S+2voLY+eFGoJU7Wzfz5+iGRvA4dSmf8wdQpRB9TY732PX3Qb3kKbkvkR6KaDTyrI8ibycyFJ1tIQ7Vte3upwlZKHNu1K6cAVCGIvEfbnPNn2/9UraaTdkS+dzJVdFLzhw0JnPeF1a/vlXvswNHond498L5PUIo9VFypVaI+KSlHaJL27mjkL5c=
+    file: dist/*
+    file_glob: true
+    skip_cleanup: true
+    on:
+      tags: true
+      repo: 3stack-software/rfc6266
+  - provider: script
+    script: bash dist_gemfury.sh
+    on:
+      tags: true
